@@ -1,0 +1,33 @@
+.logo img {
+    width: 90px;
+    display: block;
+    margin: 0 auto;
+}
+
+:host ::ng-deep .short-description .ck-editor__editable_inline {
+    height: 300px;
+
+}
+
+:host ::ng-deep .full-description .ck-editor__editable_inline {
+    height: 300px;
+}
+
+.flag {
+    float: left;
+    margin: 5px 5px 0 5px;
+}
+
+.plogo {
+    float: left;
+    margin: 5px 5px 0 0;
+}
+
+.selected img {
+    box-shadow: 0px 0px 0px 5px #78909c;
+    box-sizing: border-box;;
+}
+
+.input-checkbox > .form-check-input {
+    margin-top: 0px !important;
+}

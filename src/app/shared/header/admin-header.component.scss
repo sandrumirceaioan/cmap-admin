@@ -1,0 +1,30 @@
+.header {
+    background: #191919;
+    color: #ffffff;
+    height: 61px;
+    border-bottom: 1px solid #ffffff;
+    padding:10px;
+}
+
+.brdc span {
+    display: block;
+    padding: 2px;
+    font-size: 25px;
+}
+
+.actions button {
+    color: #ffffff;
+    border: none;
+    background: none;
+    padding: 10px;
+    outline: none;
+    font-size: 13px;  
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+    .header {
+        border-top:1px solid #ffffff;
+    }
+}
+

@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- countries -->
+        <div class="col-12">
+            <div class="md-form">
+                <input mdbInput #searchCountries type="text" id="form1" class="form-control"
+                    (keyup)="updateFilterCountries($event)"><label for="form1" class="">Search countries</label>
+            </div>
+            <ngx-datatable #myCountriesTable class="material" [rows]="rows" [columns]="columns" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+            </ngx-datatable>
+
+            <ngx-datatable-column name="Flag" sortable="false" prop="countryFlag">
+                <ng-template #countryImage let-row="row" let-value="value" let-i="index">
+                    <img [src]="adminSettingsService.backendPath + row.countryFlag" class="custom-table-image"
+                        [alt]="row.countryName">
+                </ng-template>
+            </ngx-datatable-column>
+        </div>
+
+        <!-- providers -->
+        <div class="col-12">
+            <div class="md-form">
+                <input mdbInput #searchProviders type="text" id="form2" class="form-control"
+                    (keyup)="updateFilterProviders($event)"><label for="form2" class="">Search providers</label>
+            </div>
+            <ngx-datatable #myProvidersTable class="material" [rows]="rows1" [columns]="columns1" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                <ngx-datatable-row-detail rowHeight="auto">
+                </ngx-datatable-row-detail>
+            </ngx-datatable>
+
+            <ngx-datatable-column name="Provider" sortable="false" prop="providerLogo">
+                <ng-template #providerImage let-row="row" let-value="value" let-i="index">
+                    <img [src]="adminSettingsService.backendPath + row.providerLogo" class="custom-table-image"
+                        [alt]="row.providerName">
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Edit" sortable="false" prop="providerEdit">
+                <ng-template #providerEditButton let-row="row" let-value="value" let-i="index">
+                    <button type="button" mdbBtn color="blue-grey" (click)="openProviderModal(row)" size="sm" mdbWavesEffect>
+                        <mdb-icon far icon="edit"></mdb-icon>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </div>
+
+        <!-- payment methods -->
+        <div class="col-12">
+            <div class="md-form">
+                <input mdbInput #searchPayments type="text" id="form3" class="form-control"
+                    (keyup)="updateFilterPayments($event)"><label for="form3" class="">Search payment methods</label>
+            </div>
+            <ngx-datatable #myPaymentsTable class="material" [rows]="rows2" [columns]="columns2" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                <ngx-datatable-row-detail rowHeight="auto">
+                </ngx-datatable-row-detail>
+            </ngx-datatable>
+
+            <ngx-datatable-column name="Flag" sortable="false" prop="paymentMethodLogo">
+                <ng-template #paymentImage let-row="row" let-value="value" let-i="index">
+                    <img [src]="adminSettingsService.backendPath + row.paymentMethodLogo" class="custom-table-image"
+                        [alt]="row.paymentMethodName">
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Edit" sortable="false" prop="paymentEdit">
+                <ng-template #paymentEditButton let-row="row" let-value="value" let-i="index">
+                    <button type="button" mdbBtn color="blue-grey" (click)="openPaymentModal(row)" size="sm" mdbWavesEffect>
+                        <mdb-icon far icon="edit"></mdb-icon>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </div>
+    </div>
+</div>

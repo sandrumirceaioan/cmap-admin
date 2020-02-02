@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <app-autocomplete [label]="'Search'" [data]="'providers'" [property]="'providerName'"
+        (onSelect)="selectedProvider($event)">
+    </app-autocomplete>
+    <ul *ngIf="selected" class="selected">
+        <li>
+            <img src="{{adminSettingsService.backendPath + selected.providerLogo }}" title="{{selected.providerLogo}}"
+                alt="{{selected.providerLogo}}">
+        </li>
+        <li>{{selected.providerName}}</li>
+        <li>{{selected.providerWebsite}}</li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button mdbBtn type="button" color="blue-grey" (click)="confirm()" [disabled]="!selected" mdbWavesEffect>{{button}}</button>
+    <button mdbBtn type="button" color="grey" (click)="bsModalRef.hide()" mdbWavesEffect>Close</button>
+</div>

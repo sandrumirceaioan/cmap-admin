@@ -1,0 +1,19 @@
+.counter {
+    border-top: 1px solid #ececec;
+    padding: 10px 0px 0px 0px;
+}
+
+.counter span {
+    font-size:35px;
+    white-space: nowrap;
+}
+
+.total span {
+    color: #3b3b3b;
+    font-weight: bold;
+}
+
+.published span {
+    color: #ffbb00;
+    font-weight: bold;
+}

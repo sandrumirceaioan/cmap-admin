@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="paymentForm">
+      <div class="md-form mb-2">
+        <input type="text" id="paymentMethodName" formControlName="paymentMethodName" class="form-control" mdbInput>
+        <label for="paymentMethodName">Payment Method Name</label>
+      </div>
+  
+      <div class="md-form mb-3">
+        <input type="text" id="paymentMethodWebsite" formControlName="paymentMethodWebsite" class="form-control" mdbInput>
+        <label for="paymentMethodWebsite">Payment Method Website</label>
+      </div>
+  
+      <div class="form-row inner">
+        <div class="col-md-6 col-12">
+          <img *ngIf="data.paymentMethodLogo" src="{{adminSettingsService.backendPath+data.paymentMethodLogo}}" alt="{{data.paymentMethodLogo}}">
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="md-form">
+            <input type="file" [formControl]="paymentMethodLogo" (change)="onFileChange($event)">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button mdbBtn type="button" color="blue-grey" (click)="confirm()" mdbWavesEffect>{{button | titlecase}}</button>
+    <button mdbBtn type="button" color="grey" (click)="bsModalRef.hide()" mdbWavesEffect>Close</button>
+  </div>

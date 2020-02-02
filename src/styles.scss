@@ -1,0 +1,144 @@
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+
+body {
+  background: url('/assets/images/body-bg.png');
+}
+
+.bg-black {
+    background: #000000;
+}
+
+.progress-linear .container {
+    min-width: 100% !important;
+}
+
+.md-form input[type=text]:focus:not([readonly]), .md-form input[type=number]:focus:not([readonly]), .md-form textarea[type=text]:focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 #78909c !important;
+  border-bottom: 1px solid #78909c !important;
+}
+
+.md-form input[type=text]:focus:not([readonly]) + label, .md-form input[type=number]:focus:not([readonly]) + label, .md-form textarea[type=text]:focus:not([readonly]) + label {
+  color: #78909c;
+}
+
+.ui-checkbox-label {
+  font-size: 13px;
+  display: block;
+  float: right;
+  margin-left: 5px;
+  line-height: 12px;
+}
+
+.char-counter {
+  display: block;
+  float: left;
+  font-size: 11px;
+  color: #a8b7bf;
+}
+
+.form-row {
+  position: relative;
+  border: 0;
+  padding: 10px;
+  margin: 15px 0 15px 0;
+  background: #fff;
+  box-shadow: 0 0 7px 0px rgb(202, 202, 202);
+}
+
+.form-row .inner {
+  position: relative;
+  border: 0;
+  padding: 0px !important;
+  margin: 0 !important;
+  background: #fff;
+  box-shadow: none !important;
+}
+
+.form-row-title {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: #616161;
+  padding: 0px 20px;
+  color: #ffffff;
+  font-size: 15px;
+  z-index: 9999;
+}
+
+.ct tag {
+  border-radius: 3px !important;
+  font-size: 14px !important;
+  padding: 0px 5px !important;
+}
+
+.custom-tags tag {
+  border-radius: 3px !important;
+  font-size: 14px !important;
+  padding: 0px 5px !important;
+}
+
+tag-input-form > form > input {
+  width:140px !important;
+}
+
+.custom-tags .ng2-tag-input[_ngcontent-serverApp-c5], .ng2-tag-input {
+  border-bottom: 0px solid #efefef !important;
+  font-size: 13px !important;
+}
+
+.custom-tags .ng2-tag-input[_ngcontent-serverApp-c5] .ng2-tags-container[_ngcontent-serverApp-c5] {
+    /* flex-wrap: wrap; */
+    display: flex;
+}
+
+.ng2-tag-input__text-input[_ngcontent-serverApp-c8] {
+  height: 32px !important;
+}
+
+.custom-tags .ng2-tag-input[_ngcontent-serverApp-c5] .ng2-tags-container[_ngcontent-serverApp-c5] {
+  flex-wrap: nowrap !important;
+}
+
+tag[_ngcontent-serverApp-c5]:not(.readonly):not(.tag--editing):focus {
+  background: #78909c !important;
+}
+
+tag[_ngcontent-serverApp-c6]:not(.readonly):not(.tag--editing):active {
+  background: #78909c !important;
+}
+
+tag[_ngcontent-serverApp-c6]:not(.readonly):not(.tag--editing):focus {
+  background: #78909c !important;
+}
+
+.ck-editor__main strong {
+  font-weight: bold !important;
+}
+
+.textarea-label {
+  position: relative !important;
+  font-size: 13px!important;
+  color: #757575 !important;
+  margin: 0px !important;;
+  padding: 0px !important;;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    
+}

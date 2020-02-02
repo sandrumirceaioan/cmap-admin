@@ -1,0 +1,15 @@
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <img src="../../../../assets/images/logo-cbo-final4.png">
+  </div>
+  <div class="burger">
+    <button class="btn"><mdb-icon fas icon="bars" (click)="showNav = !showNav;"></mdb-icon></button>
+  </div>
+    <ul class="sidebar-nav" [class.show-nav]="showNav">
+        <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+            <a [routerLink]="[menuItem.path]" routerActiveLink="active">
+                <mdb-icon class="icon" fas [icon]="menuItem.icon"></mdb-icon> {{menuItem.title}}
+            </a>
+        </li>
+    </ul>
+</div>

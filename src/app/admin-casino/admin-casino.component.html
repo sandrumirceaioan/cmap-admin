@@ -1,0 +1,476 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <form name="form" #f="ngForm" novalidate>
+
+                <!-- IDENTITY -->
+                <div class="form-row">
+                    <div class="form-row-title">Identity</div>
+                    <div class="col-lg-2 col-12 logo">
+                        <img src="{{adminCasinosService.backendPath+casino.casinoLogo}}" alt="{{casino.casinoLogo}}">
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoName" name="casinoName" class="form-control"
+                                [(ngModel)]="casino.casinoName" #casinoName="ngModel"
+                                (keyup)="updateUrl(casino.casinoName)">
+                            <label for="casinoName">Name</label>
+                            <small class="char-counter">{{casino.casinoName.length}}</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoWebsiteUrl" name="casinoWebsiteUrl"
+                                class="form-control" [(ngModel)]="casino.casinoWebsiteUrl" #casinoWebsiteUrl="ngModel">
+                            <label for="casinoWebsiteUrl">Website</label>
+                            <small class="char-counter">{{casino.casinoWebsiteUrl.length}}</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoUrl" name="casinoUrl" class="form-control"
+                                [(ngModel)]="casino.casinoUrl" #casinoUrl="ngModel">
+                            <label for="casinoUrl">Url</label>
+                            <small class="char-counter">
+                                <input name="casinoUrlCustom" type="checkbox" class="input-checkbox"
+                                    [(ngModel)]="casino.casinoUrlCustom">
+                                <span> custom url</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoEstablished" name="casinoEstablished"
+                                class="form-control" [(ngModel)]="casino.casinoEstablished"
+                                #casinoEstablished="ngModel">
+                            <label for="casinoEstablished">Established</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form text-center">
+                            <ui-switch id="casinoStatus" name="casinoStatus" [(ngModel)]="casino.casinoStatus"
+                                size="large" checkedLabel="OPEN" uncheckedLabel="CLOSED"></ui-switch>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="form-row">
+                    <div class="form-row-title">Contact</div>
+                    <div class="col-lg-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoOwner" name="casinoOwner" class="form-control"
+                                [(ngModel)]="casino.casinoOwner" #casinoOwner="ngModel">
+                            <label for="casinoOwner">Owner</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoEmail" name="casinoEmail" class="form-control"
+                                [(ngModel)]="casino.casinoContact.email" #casinoEmail="ngModel">
+                            <label for="casinoEmail">Email</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoPhone" name="casinoPhone" class="form-control"
+                                [(ngModel)]="casino.casinoContact.phone" #casinoPhone="ngModel">
+                            <label for="casinoPhone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoLiveChat" name="casinoLiveChat" class="form-control"
+                                [(ngModel)]="casino.casinoLiveChat" #casinoLiveChat="ngModel">
+                            <label for="casinoLiveChat">Live Chat</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoAffiliateProgram" name="casinoAffiliateProgram"
+                                class="form-control" [(ngModel)]="casino.casinoAffiliateProgram.url"
+                                #casinoAffiliateProgram="ngModel">
+                            <label for="casinoLiveChat">Affiliate -
+                                <strong>{{casino.casinoAffiliateProgram.name}}</strong></label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- OTHER DETAILS  -->
+                <div class="form-row">
+                    <div class="form-row-title">Details</div>
+                    <div class="col-md-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="number" id="casinoScore" name="casinoScore" class="form-control"
+                                [(ngModel)]="casino.casinoScore" #casinoScore="ngModel"
+                                (change)="setReputation(casino.casinoScore)" step="0.01">
+                            <label for="casinoScore">Casino Score</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoReputation" name="casinoReputation"
+                                class="form-control" [(ngModel)]="casino.casinoReputation" #casinoReputation="ngModel"
+                                disabled>
+                            <label for="casinoReputation">Casino Reputation</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoRtp" name="casinoRtp" class="form-control"
+                                [(ngModel)]="casino.casinoRtp" #casinoRtp="ngModel">
+                            <label for="casinoRtp">Casino RTP</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoWithdrawalLimit" name="casinoWithdrawalLimit"
+                                class="form-control" [(ngModel)]="casino.casinoWithdrawalLimit"
+                                #casinoWithdrawalLimit="ngModel">
+                            <label for="casinoWithdrawalLimit">Casino Withdrawal Limit</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoThemeColor" name="casinoThemeColor"
+                            class="form-control" [(colorPicker)]="casino.casinoThemeColor" [cpPosition]="'bottom'" [(ngModel)]="casino.casinoThemeColor" [attr.style]="('color:' + casino.casinoThemeColor + ' !important') | safeStyle"/>
+                            <label for="casinoThemeColor">Theme Color</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUMMARY -->
+                <div class="form-row">
+                    <div class="form-row-title">SUMMARY</div>
+
+                    <!-- positives - negatives -->
+                    <div class="col-md-7 mt-3">
+                        <div class="form-row inner">
+                            <div class="col-md-6">
+                                <label for="casinoSpecsPositive" class="textarea-label">Casino Positives</label>
+                                <div class="md-form input-group mt-1 mb-2 p-0"
+                                    *ngFor="let positive of casino.casinoSpecs.positives; let i = index; trackBy:trackByFn">
+                                    <input mdbInput type="text" [id]="'casinoSpecsPositive'+i" [name]="'casinoSpecsPositive' 
+                                                            +i" class="form-control"
+                                        [(ngModel)]="casino.casinoSpecs.positives[i]"
+                                        aria-describedby="'button-addon' + i">
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1" type="button"
+                                            [id]="'button-addon-p' + i" mdbWavesEffect
+                                            (click)="removeSpecs('positives', i)">
+                                            <mdb-icon fas icon="minus"></mdb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button mdbBtn color="blue-grey" size="xs" class="m-0 px-2 py-1 float-right"
+                                    type="button" id="button-add-p" mdbWavesEffect (click)="addSpecs('positives')">
+                                    <mdb-icon fas icon="plus"></mdb-icon>
+                                </button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="casinoSpecsNegative" class="textarea-label">Casino Negatives</label>
+                                <div class="md-form input-group mt-1 mb-2 p-0"
+                                    *ngFor="let negative of casino.casinoSpecs.negatives; let j = index; trackBy:trackByFn">
+                                    <input mdbInput type="text" [id]="'casinoSpecsNegative'+j"
+                                        [name]="'casinoSpecsNegative'+j" class="form-control"
+                                        [(ngModel)]="casino.casinoSpecs.negatives[j]"
+                                        aria-describedby="'button-addon' + j">
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1" type="button"
+                                            [id]="'button-addon-n' + j" mdbWavesEffect
+                                            (click)="removeSpecs('negatives', j)">
+                                            <mdb-icon fas icon="minus"></mdb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button mdbBtn color="blue-grey" size="xs" class="m-0 px-2 py-1 float-right"
+                                    type="button" id="button-add-n" mdbWavesEffect (click)="addSpecs('negatives')">
+                                    <mdb-icon fas icon="plus"></mdb-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- withdrawal times -->
+                    <div class="col-md-5 mt-3">
+                        <label class="textarea-label">Withdrawal Times</label>
+                        <div class="form-row inner"
+                            *ngFor="let wt of casino.casinoWithdrawalTimes; let i = index; trackBy:trackByFn">
+                            <div class="col-6">
+                                <div class="md-form input-group my-1 p-0">
+                                    <input mdbInput type="text" [id]="'casinoWithdrawalTimesType'+i"
+                                        [name]="'casinoWithdrawalTimesType'+i" class="form-control"
+                                        [(ngModel)]="wt.type">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="md-form input-group my-1 p-0">
+                                    <input mdbInput type="text" [id]="'casinoWithdrawalTimesDuration'+i"
+                                        [name]="'casinoWithdrawalTimesDuration'+i" class="form-control"
+                                        [(ngModel)]="wt.duration" aria-describedby="'button-remove-wt' + i">
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1" type="button"
+                                            [id]="'button-remove-wt' + i" mdbWavesEffect
+                                            (click)="removeWithdrawalTimes(i)">
+                                            <mdb-icon fas icon="minus"></mdb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button mdbBtn color="blue-grey" size="xs" class="m-1 px-2 py-1 float-right" type="button"
+                            id="button-add-wt" mdbWavesEffect (click)="addWithdrawalTimes()">
+                            <mdb-icon fas icon="plus"></mdb-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="form-row">
+                    <div class="form-row-title">Description</div>
+                    <div class="col-md-7">
+                        <label for="casinoFullDescription" class="textarea-label">Casino Full Description</label>
+                        <div class="md-form">
+                            <ckeditor class="full-description" id="casinoFullDescription" name="casinoFullDescription"
+                                [editor]="Editor" [(ngModel)]="casino.casinoFullDescription"
+                                #casinoFullDescription="ngModel" [config]="config">
+                            </ckeditor>
+                            <small class="char-counter">{{casino.casinoDescription | charCount}}</small>
+                        </div>
+                    </div>
+                    <div class="col-md-5 short-description">
+                        <label for="casinoDescription" class="textarea-label">Casino Short Description</label>
+                        <div class="md-form">
+                            <ckeditor class="short-description" id="casinoDescription" name="casinoDescription"
+                                [editor]="Editor" [(ngModel)]="casino.casinoDescription" #casinoDescription="ngModel"
+                                [config]="config">
+                            </ckeditor>
+                            <small class="char-counter">{{casino.casinoDescription | charCount}}</small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- PROVIDERS -->
+                <div class="form-row">
+                    <div class="form-row-title">Providers</div>
+                    <div class="col-12">
+                        <label class="textarea-label">Software Providers</label>
+                    </div>
+                    <div class="col-12"
+                        *ngFor="let sp of casino.casinoSoftwareProviders; let i = index; trackBy:trackByFn">
+                        <div class="form-row inner">
+                            <div class="col-md-4 text-center provider-logo">
+                                <img src="{{adminCasinosService.backendPath+sp.logo }}" title="{{sp.name}}"
+                                    alt="{{sp.name}}">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="md-form input-group my-1 p-0">
+                                    <input mdbInput type="text" [id]="'sp-name'+i" [name]="'sp-name'+i"
+                                        class="form-control" [(ngModel)]="sp.name" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="md-form input-group my-1 p-0">
+                                    <input mdbInput type="text" [id]="'sp-website'+i" [name]="'sp-website'+i"
+                                        class="form-control" [(ngModel)]="sp.website"
+                                        aria-describedby="'button-remove-sp' + i" disabled>
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1" type="button"
+                                            [id]="'button-remove-sp' + i" mdbWavesEffect
+                                            (click)="removeSoftwareProviders(i)">
+                                            <mdb-icon fas icon="minus"></mdb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button mdbBtn color="blue-grey" size="xs" class="m-1 px-2 py-1 float-right" type="button"
+                            id="button-add-sp" mdbWavesEffect (click)="insertProviderModal()">
+                            <mdb-icon fas icon="plus"></mdb-icon>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- PAYMENT -->
+                <div class="form-row">
+                    <div class="form-row-title">Payment</div>
+
+                    <!-- deposit methods -->
+                    <div class="col-md-6 mt-3">
+                        <label class="textarea-label">Deposit Methods</label>
+                        <div class="form-row inner">
+                            <div class="col-12"
+                                *ngFor="let dm of casino.casinoDepositMethods; let i = index; trackBy:trackByFn">
+                                <div class="form-row inner">
+                                    <div class="col-md-6 text-center provider-logo">
+                                        <img src="{{adminCasinosService.backendPath+dm.logo }}" title="{{dm.name}}"
+                                            alt="{{dm.name}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form input-group my-1 p-0">
+                                            <input mdbInput type="text" [id]="'dm-name'+i" [name]="'dm-name'+i"
+                                                class="form-control" [(ngModel)]="dm.name"
+                                                aria-describedby="'button-remove-dm' + i" disabled>
+                                            <div class="input-group-append">
+                                                <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1"
+                                                    type="button" [id]="'button-remove-dm' + i" mdbWavesEffect
+                                                    (click)="removeDepositMethods(i)">
+                                                    <mdb-icon fas icon="minus"></mdb-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button mdbBtn color="blue-grey" size="xs" class="m-1 px-2 py-1 float-right"
+                                    type="button" id="button-add-dm" mdbWavesEffect
+                                    (click)="insertPaymentModal('casinoDepositMethods')">
+                                    <mdb-icon fas icon="plus"></mdb-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- withdrawal methods -->
+                    <div class="col-md-6 mt-3">
+                        <label class="textarea-label">Withdrawal Methods</label>
+                        <div class="form-row inner">
+                            <div class="col-12"
+                                *ngFor="let wm of casino.casinoWithdrawalMethods; let i = index; trackBy:trackByFn">
+                                <div class="form-row inner">
+                                    <div class="col-md-6 text-center provider-logo">
+                                        <img src="{{adminCasinosService.backendPath+wm.logo }}" title="{{wm.name}}"
+                                            alt="{{wm.name}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form input-group my-1 p-0">
+                                            <input mdbInput type="text" [id]="'wm-name'+i" [name]="'wm-name'+i"
+                                                class="form-control" [(ngModel)]="wm.name"
+                                                aria-describedby="'button-remove-wm' + i" disabled>
+                                            <div class="input-group-append">
+                                                <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1"
+                                                    type="button" [id]="'button-remove-wm' + i" mdbWavesEffect
+                                                    (click)="removeWithdrawalMethods(i)">
+                                                    <mdb-icon fas icon="minus"></mdb-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button mdbBtn color="blue-grey" size="xs" class="m-1 px-2 py-1 float-right"
+                                    type="button" id="button-add-wm" mdbWavesEffect
+                                    (click)="insertPaymentModal('casinoWithdrawalMethods')">
+                                    <mdb-icon fas icon="plus"></mdb-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button mdbBtn color="blue-grey" size="md" class="m-1 px-2 py-1 float-right" type="button"
+                            id="button-data-pm" mdbWavesEffect (click)="updatePaymentMethodsData()">
+                            <mdb-icon fas icon="sync-alt"></mdb-icon> Update Payment Methods
+                        </button>
+                        <button *ngIf="updatePaymentButton" mdbBtn color="dark-green" size="md"
+                            class="m-1 px-2 py-1 float-right" type="button" id="button-update-pm" mdbWavesEffect
+                            (click)="updatePaymentMethods()">
+                            <mdb-icon fas icon="check"></mdb-icon> Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COUNTRIES -->
+                <div class="form-row">
+                    <div class="form-row-title">Countries</div>
+                    <div class="col-12">
+                        <label class="textarea-label">Restricted Countries</label>
+                    </div>
+                    <div class="col-3"
+                        *ngFor="let rc of casino.casinoRestrictedCountries; let i = index; trackBy:trackByFn">
+                        <div class="form-row inner">
+                            <div class="col-md-4 text-center provider-logo">
+                                <img src="{{adminCasinosService.backendPath+rc.code +'.png' | lowercase}}"
+                                    title="{{rc.name}}" alt="{{rc.name}}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="md-form input-group my-1 p-0">
+                                    <input mdbInput type="text" [id]="'rc-name'+i" [name]="'rc-name'+i"
+                                        class="form-control" [(ngModel)]="rc.name"
+                                        aria-describedby="'button-remove-rc' + i">
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="grey" size="sm" class="m-0 px-2 py-1" type="button"
+                                            [id]="'button-remove-rc' + i" mdbWavesEffect (click)="removeCountries(i)">
+                                            <mdb-icon fas icon="minus"></mdb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button mdbBtn color="blue-grey" size="xs" class="m-1 px-2 py-1 float-right" type="button"
+                            id="button-add-rc" mdbWavesEffect (click)="insertCountriesModal()">
+                            <mdb-icon fas icon="plus"></mdb-icon>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- LIST DETAILS -->
+                <div class="form-row">
+                    <div class="form-row-title">Lists</div>
+                    <div class="col-md-12 mt-2">
+                        <label for="casinoType" class="textarea-label">Casino Type</label>
+                        <tag-input id="casinoType" class="ct custom-tags" name="casinoType"
+                            [(ngModel)]="casino.casinoType" #casinoType="ngModel" [modelAsStrings]="true"
+                            [animationDuration]="{enter: '0ms', leave: '0ms'}" placeholder="Type"></tag-input>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="casinoCurrencies" class="textarea-label">Currencies</label>
+                        <tag-input id="casinoCurrencies" class="ct" name="casinoCurrencies"
+                            [(ngModel)]="casino.casinoCurrencies" #casinoCurrencies="ngModel" [modelAsStrings]="true"
+                            [editable]="true" [animationDuration]="{enter: '0ms', leave: '0ms'}" placeholder="Currency">
+                        </tag-input>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="casinoLicensingAuthorities" class="textarea-label">Licensing
+                            Authorities</label>
+                        <tag-input class="ct" name="casinoLicensingAuthorities"
+                            [(ngModel)]="casino.casinoLicensingAuthorities" #casinoLicensingAuthorities="ngModel"
+                            [modelAsStrings]="true" [editable]="true" [animationDuration]="{enter: '0ms', leave: '0ms'}"
+                            placeholder="Authority">
+                        </tag-input>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="casinoLanguages" class="textarea-label">Languages</label>
+                        <tag-input class="ct" name="casinoLanguages" [(ngModel)]="casino.casinoLanguages"
+                            #casinoLanguages="ngModel" [modelAsStrings]="true" [editable]="true"
+                            [animationDuration]="{enter: '0ms', leave: '0ms'}" placeholder="Language">
+                        </tag-input>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col">
+                        <button type="button" (click)="updateCasino(false)" type="button" mdbBtn color="blue-grey"
+                            mdbWavesEffect [disabled]="!f.valid">Publish
+                        </button>
+                        <button *ngIf="!casino.casinoPublished" type="button" (click)="updateCasino(true)" type="button" mdbBtn color="amber"
+                        mdbWavesEffect [disabled]="!f.valid">Save Draft
+                    </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

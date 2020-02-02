@@ -1,0 +1,24 @@
+.autocomplete-container {
+    position: relative;
+    background: #ffffff;
+}
+
+.list {
+    position: absolute;
+    top: 41px;
+    left: 0px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 1px 7px 0px #cacaca;
+    z-index: 9999;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.list li {
+    cursor: pointer;
+}
+
+.list li:hover {
+    background: #e7e7e7;
+}

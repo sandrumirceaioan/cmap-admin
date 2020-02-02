@@ -1,0 +1,17 @@
+<div class="autocomplete-container">
+    <div class="md-form input-group mb-2 mt-1">
+        <input mdbInput #searchInput type="text" id="form1" class="form-control" aria-describedby="'button-select'"
+            autocomplete="off" (keydown.esc)="clear()">
+        <div class="input-group-append">
+        </div>
+        <label for="form1" class="">{{label}}</label>
+    </div>
+    <div class="list">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let item of list" class="list-group-item py-1" (click)="onSelectItem(item)">
+                {{item[property]}}
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+</div>

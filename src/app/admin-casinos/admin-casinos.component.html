@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="title">
+                <div class="md-form">
+                    <input mdbInput #searchInput type="text" id="form1" class="form-control">
+                    <label for="form1" class="">Search casinos</label>
+                </div>
+            </div>
+            <ngx-datatable 
+                #myTable 
+                class="material" 
+                [rows]="rows" 
+                [columns]="columns" 
+                [columnMode]="'force'"  
+                [headerHeight]="50"
+                [footerHeight]="50" 
+                [rowHeight]="'auto'" 
+                [loadingIndicator]="loading" 
+                [externalSorting]="true"
+                [externalPaging]="true" 
+                [count]="adminCasinosService.page.count"
+                [offset]="adminCasinosService.page.offset" 
+                [limit]="adminCasinosService.page.limit"
+                (page)="pageCallback($event)" 
+                (sort)="sortCallback($event)"
+            >
+
+            <!-- Row Detail Template -->
+            <ngx-datatable-row-detail rowHeight="auto" #myDetailRow (toggle)="onDetailToggle($event)">
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                    <div class="expanded-row">
+                        <div class="col-lg-6">
+                            <p [innerHTML]="row.casinoDescription"></p>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-row-detail>
+            </ngx-datatable>
+
+            <ngx-datatable-column name="Logo" sortable="false" prop="casinoLogo">
+                    <ng-template #rowImage let-row="row" let-value="value" let-i="index">
+                        <img [src]="adminCasinosService.backendPath + row.casinoLogo" class="custom-table-image" alt="row.casinoName">
+                </ng-template>
+            </ngx-datatable-column>
+
+
+            <ngx-datatable-column name="Details" sortable="false" prop="details">
+                    <ng-template #detailsButton let-row="row" let-expanded="expanded">
+                        <button type="button" mdbBtn color="blue-grey" (click)="toggleExpandRow(row)" size="sm" mdbWavesEffect>
+                            <mdb-icon *ngIf="!expanded" fas icon="angle-right"></mdb-icon>
+                            <mdb-icon *ngIf="expanded" fas icon="angle-down"></mdb-icon>
+                        </button>
+                    </ng-template>
+            </ngx-datatable-column>
+            
+            <ngx-datatable-column name="Edit" sortable="false" prop="edit">
+                <ng-template #editButton let-row="row" let-value="value" let-i="index">
+                    <button type="button" mdbBtn color="blue-grey" (click)="editCasino(row)" size="sm" mdbWavesEffect>
+                        <mdb-icon far icon="edit"></mdb-icon>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+        </div>
+    </div>
+
+</div>
