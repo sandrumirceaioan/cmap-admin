@@ -134,7 +134,9 @@
                     <div class="col-md-2 col-12">
                         <div class="md-form">
                             <input mdbInput type="text" id="casinoThemeColor" name="casinoThemeColor"
-                            class="form-control" [(colorPicker)]="casino.casinoThemeColor" [cpPosition]="'bottom'" [(ngModel)]="casino.casinoThemeColor" [attr.style]="('color:' + casino.casinoThemeColor + ' !important') | safeStyle"/>
+                                class="form-control" [(colorPicker)]="casino.casinoThemeColor" [cpPosition]="'bottom'"
+                                [(ngModel)]="casino.casinoThemeColor"
+                                [attr.style]="('color:' + casino.casinoThemeColor + ' !important') | safeStyle" />
                             <label for="casinoThemeColor">Theme Color</label>
                         </div>
                     </div>
@@ -231,17 +233,7 @@
                 <!-- DESCRIPTION -->
                 <div class="form-row">
                     <div class="form-row-title">Description</div>
-                    <div class="col-md-7">
-                        <label for="casinoFullDescription" class="textarea-label">Casino Full Description</label>
-                        <div class="md-form">
-                            <ckeditor class="full-description" id="casinoFullDescription" name="casinoFullDescription"
-                                [editor]="Editor" [(ngModel)]="casino.casinoFullDescription"
-                                #casinoFullDescription="ngModel" [config]="config">
-                            </ckeditor>
-                            <small class="char-counter">{{casino.casinoDescription | charCount}}</small>
-                        </div>
-                    </div>
-                    <div class="col-md-5 short-description">
+                    <div class="col-md-12 short-description">
                         <label for="casinoDescription" class="textarea-label">Casino Short Description</label>
                         <div class="md-form">
                             <ckeditor class="short-description" id="casinoDescription" name="casinoDescription"
@@ -250,6 +242,76 @@
                             </ckeditor>
                             <small class="char-counter">{{casino.casinoDescription | charCount}}</small>
                         </div>
+                    </div>
+                    
+                    <div class="col-md-7">
+                        <label for="casinoFullDescription" class="textarea-label">Casino Full Description</label>
+                        <div class="form-row inner">
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionIntro" class="browser-default custom-select"
+                                    [(ngModel)]="selectedIntroDescription"
+                                    (change)="setDescription(selectedIntroDescription, 'intro')">
+                                    <option [ngValue]="null" selected>Intro</option>
+                                    <option *ngFor="let intro of descriptionList.intro" [ngValue]="intro.index">
+                                        {{intro.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionGames" class="browser-default custom-select"
+                                    [(ngModel)]="selectedGamesDescription"
+                                    (change)="setDescription(selectedGamesDescription, 'games')">
+                                    <option [ngValue]="null" selected>Games</option>
+                                    <option *ngFor="let games of descriptionList.games" [ngValue]="games.index">
+                                        {{games.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionPayment" class="browser-default custom-select"
+                                    [(ngModel)]="selectedPaymentDescription"
+                                    (change)="setDescription(selectedPaymentDescription, 'payment')">
+                                    <option [ngValue]="null" selected>Payment</option>
+                                    <option *ngFor="let payment of descriptionList.payment" [ngValue]="payment.index">
+                                        {{payment.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionPlatform" class="browser-default custom-select"
+                                    [(ngModel)]="selectedPlatformDescription"
+                                    (change)="setDescription(selectedPlatformDescription, 'platform')">
+                                    <option [ngValue]="null" selected>Platform</option>
+                                    <option *ngFor="let platform of descriptionList.platform" [ngValue]="platform.index">
+                                        {{platform.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionSecurity" class="browser-default custom-select"
+                                    [(ngModel)]="selectedSecurityDescription"
+                                    (change)="setDescription(selectedSecurityDescription, 'security')">
+                                    <option [ngValue]="null" selected>Security</option>
+                                    <option *ngFor="let security of descriptionList.security" [ngValue]="security.index">
+                                        {{security.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-3 p-1">
+                                <button type="button" (click)="generateDescription()" size="sm" type="button" mdbBtn
+                                    color="blue-grey" mdbWavesEffect>Generate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="md-form">
+                            <ckeditor class="full-description" id="casinoFullDescription" name="casinoFullDescription"
+                                [editor]="Editor" [(ngModel)]="casino.casinoFullDescription"
+                                #casinoFullDescription="ngModel" [config]="config">
+                            </ckeditor>
+                            <small class="char-counter">{{casino.casinoFullDescription | charCount}}</small>
+                        </div>
+                    </div>
+                    <div class="col-md-5 pt-5 px-3" [innerHTML]="previewSelected">
                     </div>
                 </div>
 
@@ -466,9 +528,9 @@
                         <button type="button" (click)="updateCasino(false)" type="button" mdbBtn color="blue-grey"
                             mdbWavesEffect [disabled]="!f.valid">Publish
                         </button>
-                        <button *ngIf="!casino.casinoPublished" type="button" (click)="updateCasino(true)" type="button" mdbBtn color="amber"
-                        mdbWavesEffect [disabled]="!f.valid">Save Draft
-                    </button>
+                        <button *ngIf="!casino.casinoPublished" type="button" (click)="updateCasino(true)" type="button"
+                            mdbBtn color="amber" mdbWavesEffect [disabled]="!f.valid">Save Draft
+                        </button>
                     </div>
                 </div>
             </form>

@@ -8,6 +8,7 @@ import { ProviderInsertModalComponent } from '../shared/modals/provider-insert-m
 import { PaymentInsertModalComponent } from '../shared/modals/payment-insert-modal/payment-insert-modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { CountryInsertModalComponent } from '../shared/modals/country-insert-modal/country-insert-modal.component';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-admin-casino',
@@ -28,16 +29,77 @@ export class AdminCasinoComponent implements OnInit {
   bsModalRefCountry: BsModalRef;
 
   updatePaymentButton = false;
-  descriptionTemplate: any = `
-  <h2>{{casino.casinoName}} General Information</h2>
-  <table>
-  `;
 
+  selectedIntroDescription = null;
+  selectedGamesDescription = null;
+  selectedPaymentDescription = null;
+  selectedPlatformDescription = null;
+  selectedSecurityDescription = null;
+  selectedFeedbackDescription = null;
+  previewSelected: any;
 
-  // <h2>{{casino.casinoName}} General Information</h2>
-  // <table></table>
+  usedPlaceholders = [
+    "casinoName",
+    "casinoReputation",
+    "casinoType",
+    "casinoOwner",
+    "casinoEstablished",
+    "casinoLicensingAuthorities",
+    "casinoSoftwareProviders"
+  ];
 
-  // for sidebar Casino Overview - pros / cons
+  description: any = {
+    intro: '',
+    games: '',
+    payment: '',
+    platform: '',
+    security: ''
+  };
+
+  descriptionList: any = {
+    intro: [
+      {
+        index: 0,
+        name: 'First',
+        template: '<p>casinoName is part of the casinoOwner, and it is the main casino of this prominent gaming company. They offer an amazing range of online slot games from providers such as casinoSoftwareProviders. Their games are all available in both casinoType formats, so they are allowing players to enjoy their time on the casino with mobile devices or desktop units.</p>'
+      }
+    ],
+    games: [
+      {
+        index: 0,
+        name: 'First',
+        template: '<h4>Providers and Games</h4><p>casinoSoftwareProviders are some of casinoName best software providers.</p><p>Among the games offered you can find popular titles such as [...].</p>'
+      }
+    ],
+    payment: [
+      {
+        index: 0,
+        name: 'First',
+        template: `
+        <h4>Deposit and Withdrawal</h4>
+        <p>Unfortunately, there are some country restrictions here which includes but is not limited to residents from the United States of America. The casino will not accept players from jurisdictions where online gambling is illegal, and it is the players responsibility to check this before attempting to open an account. A list of restricted/allowed countries can be found under ‘more casino details’.</p>`
+      }
+    ],
+    platform: [
+      {
+        index: 0,
+        name: 'First',
+        template: `
+        <h4>Platform and Contact</h4>
+        <p>Those who prefer gaming on the go for even more convenience can still play at the casino using their smartphone and tablet devices. Games are optimized to use anytime, anywhere and can be reached through a compatible mobile browser.</p>`
+      }
+    ],
+    security: [
+      {
+        index: 0,
+        name: 'First',
+        template: `<h4>Security and Fairness</h4>
+        <p>When it comes to security the casino uses a high level of secure connection which is verified by Comodo Limited. This ensure players personal and financial transactions are always kept secure and encrypted.</p>
+        <p>They also use a random number generator, so members can play with confidence knowing the games have fair and random outcomes.</p>`
+      }
+    ]
+  };
+
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +113,37 @@ export class AdminCasinoComponent implements OnInit {
     this.casino = this.route.snapshot.data['casino'].casino;
     this.updateUrl();
     console.log(this.casino);
+  }
+
+  setDescription(index, section) {
+    if (index == null) return false;
+    console.log(index, section);
+    this.description[section] = this.descriptionList[section][index].template;
+    this.previewSelected = this.descriptionList[section][index].template;
+  }
+
+  generateDescription() {
+    console.log(this.description);
+    let mergedDescription = '';
+    for (var property in this.description) {
+      mergedDescription = mergedDescription.concat(this.description[property]);
+    }
+
+    for (let i = 0, l = this.usedPlaceholders.length; i < l; i++) {
+      let replaceValue = '';
+      if (this.usedPlaceholders[i] === 'casinoSoftwareProviders') {
+        replaceValue = _.pluck(_.first(this.casino.casinoSoftwareProviders, 10), 'name').join(', ');
+      } else {
+        replaceValue = this.casino[this.usedPlaceholders[i]];
+      }
+
+      // // bold replaced placeholders
+      // var find = this.usedPlaceholders[i];
+      // var re = new RegExp(find, 'g');
+      // mergedDescription = mergedDescription.replace(re, '<b>' + replaceValue + '</b>');
+    }
+
+    this.casino.casinoFullDescription = mergedDescription;
   }
 
   setReputation(score) {
