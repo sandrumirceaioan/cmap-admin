@@ -107,7 +107,7 @@ export class AdminCasinoComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private adminCasinosService: AdminCasinosService
+    public adminCasinosService: AdminCasinosService
   ) { }
 
   ngOnInit() {

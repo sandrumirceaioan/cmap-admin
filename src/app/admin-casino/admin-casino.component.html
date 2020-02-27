@@ -13,7 +13,7 @@
                         <div class="md-form">
                             <input mdbInput type="text" id="casinoName" name="casinoName" class="form-control"
                                 [(ngModel)]="casino.casinoName" #casinoName="ngModel"
-                                (keyup)="updateUrl(casino.casinoName)">
+                                (keyup)="updateUrl()">
                             <label for="casinoName">Name</label>
                             <small class="char-counter">{{casino.casinoName.length}}</small>
                         </div>

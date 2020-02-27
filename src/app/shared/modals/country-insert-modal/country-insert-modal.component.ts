@@ -21,7 +21,7 @@ export class CountryInsertModalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public bsModalRef: BsModalRef,
-    private adminSettingsService: AdminSettingsService
+    public adminSettingsService: AdminSettingsService
   ) { }
 
   ngOnInit() {

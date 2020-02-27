@@ -52,7 +52,7 @@ export class AdminSettingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private modalService: BsModalService,
-    private adminSettingsService: AdminSettingsService
+    public adminSettingsService: AdminSettingsService
   ) { }
 
   ngOnInit() {

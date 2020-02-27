@@ -25,7 +25,7 @@ export class ProviderModalComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     public bsModalRef: BsModalRef,
-    private adminSettingsService: AdminSettingsService
+    public adminSettingsService: AdminSettingsService
     ) { }
  
   ngOnInit() {

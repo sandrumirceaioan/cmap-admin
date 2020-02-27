@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [
 
 export class AdminSidebarComponent implements OnInit {
     public menuItems: any[];
-    private showNav = false;
+    public showNav = false;
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
