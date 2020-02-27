@@ -29,6 +29,7 @@ export class AdminCasinoComponent implements OnInit {
   bsModalRefCountry: BsModalRef;
 
   updatePaymentButton = false;
+  haveMetaDescription = false;
 
   selectedIntroDescription = null;
   selectedGamesDescription = null;
@@ -112,18 +113,18 @@ export class AdminCasinoComponent implements OnInit {
   ngOnInit() {
     this.casino = this.route.snapshot.data['casino'].casino;
     this.updateUrl();
-    console.log(this.casino);
+    if (this.casino.casinoMetaDescription && this.casino.casinoMetaDescription != '') {
+      this.haveMetaDescription = true;
+    }
   }
 
   setDescription(index, section) {
     if (index == null) return false;
-    console.log(index, section);
     this.description[section] = this.descriptionList[section][index].template;
     this.previewSelected = this.descriptionList[section][index].template;
   }
 
   generateDescription() {
-    console.log(this.description);
     let mergedDescription = '';
     for (var property in this.description) {
       mergedDescription = mergedDescription.concat(this.description[property]);
@@ -137,10 +138,10 @@ export class AdminCasinoComponent implements OnInit {
         replaceValue = this.casino[this.usedPlaceholders[i]];
       }
 
-      // // bold replaced placeholders
-      // var find = this.usedPlaceholders[i];
-      // var re = new RegExp(find, 'g');
-      // mergedDescription = mergedDescription.replace(re, '<b>' + replaceValue + '</b>');
+      // bold replaced placeholders
+      var find = this.usedPlaceholders[i];
+      var re = new RegExp(find, 'g');
+      mergedDescription = mergedDescription.replace(re, '<b>' + replaceValue + '</b>');
     }
 
     this.casino.casinoFullDescription = mergedDescription;
@@ -302,6 +303,14 @@ export class AdminCasinoComponent implements OnInit {
     }
   }
 
+  generateMetaDescription(description) {
+    if (this.haveMetaDescription) {
+      const regex = /(<([^>]+)>)/ig;
+      this.casino['casinoMetaDescription'] = description.replace(regex, "");
+    } else {
+      this.casino['casinoMetaDescription'] = null;
+    }
+  }
 
 
 }

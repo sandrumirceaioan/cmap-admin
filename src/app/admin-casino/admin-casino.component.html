@@ -233,7 +233,7 @@
                 <!-- DESCRIPTION -->
                 <div class="form-row">
                     <div class="form-row-title">Description</div>
-                    <div class="col-md-12 short-description">
+                    <div class="col-md-7 short-description">
                         <label for="casinoDescription" class="textarea-label">Casino Short Description</label>
                         <div class="md-form">
                             <ckeditor class="short-description" id="casinoDescription" name="casinoDescription"
@@ -242,6 +242,14 @@
                             </ckeditor>
                             <small class="char-counter">{{casino.casinoDescription | charCount}}</small>
                         </div>
+                    </div>
+                    <div class="col-md-5 short-description">
+                        <label for="haveMetaDescription" class="textarea-label">
+                            <input type="checkbox" name="haveMetaDescription" id="haveMetaDescription" [(ngModel)]="haveMetaDescription" (change)="generateMetaDescription(casino.casinoDescription)"> Generate Meta Description
+                        </label>
+                        <div class="md-form">
+                            <textarea type="text" rows="4" name="casinoMetaDescription" id="form7" class="md-textarea form-control" [(ngModel)]="casino.casinoMetaDescription" mdbInput></textarea>
+                          </div>
                     </div>
                     
                     <div class="col-md-7">
@@ -311,7 +319,7 @@
                             <small class="char-counter">{{casino.casinoFullDescription | charCount}}</small>
                         </div>
                     </div>
-                    <div class="col-md-5 pt-5 px-3" [innerHTML]="previewSelected">
+                    <div class="col-md-5 pt-3 px-3" [innerHTML]="previewSelected">
                     </div>
                 </div>
 
