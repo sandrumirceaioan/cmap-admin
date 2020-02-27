@@ -33,7 +33,7 @@ export class AdminCasinosComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
-    private adminCasinosService: AdminCasinosService
+    public adminCasinosService: AdminCasinosService
   ) { }
 
   ngOnInit() {
