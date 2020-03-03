@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminComponent } from './admin/admin.component';
@@ -14,7 +15,8 @@ import { AdminSlotsComponent } from './admin-slots/admin-slots.component';
 import { AdminAffiliatesComponent } from './admin-affiliates/admin-affiliates.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AdminSettingsResolve } from './admin-settings/admin-settings.resolve';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { AdminTemplatesComponent } from './admin-templates/admin-templates.component';
+import { AdminTemplatesResolve } from './admin-templates/admin-templates.resolve';
 
 const routes: Routes = [
   {
@@ -78,6 +80,14 @@ const routes: Routes = [
         data: { breadcrumb: 'Settings' },
         resolve: {
           settings: AdminSettingsResolve
+        }
+      },
+      {
+        path: 'templates',
+        component: AdminTemplatesComponent,
+        data: { breadcrumb: 'Templates' },
+        resolve: {
+          settings: AdminTemplatesResolve
         }
       }
     ]

@@ -43,6 +43,9 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AdminTemplatesComponent } from './admin-templates/admin-templates.component';
+import { AdminTemplatesResolve } from './admin-templates/admin-templates.resolve';
+import { TemplateModalComponent } from './shared/modals/template-modal/template-modal.component';
 
 TagInputModule.withDefaults({
 
@@ -71,7 +74,9 @@ TagInputModule.withDefaults({
     ProviderInsertModalComponent,
     PaymentModalComponent,
     PaymentInsertModalComponent,
-    CountryInsertModalComponent
+    CountryInsertModalComponent,
+    AdminTemplatesComponent,
+    TemplateModalComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +112,8 @@ TagInputModule.withDefaults({
     AdminDashboardResolve,
     AdminCasinosResolve,
     AdminCasinoResolve,
-    AdminSettingsResolve
+    AdminSettingsResolve,
+    AdminTemplatesResolve
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -115,7 +121,8 @@ TagInputModule.withDefaults({
     ProviderInsertModalComponent,
     PaymentModalComponent,
     PaymentInsertModalComponent,
-    CountryInsertModalComponent
+    CountryInsertModalComponent,
+    TemplateModalComponent
   ]
 })
 export class AppModule { }

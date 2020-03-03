@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- templates -->
+        <div class="col-12">
+            <div class="md-form">
+                <input mdbInput #searchTemplates type="text" id="form1" class="form-control"
+                    (keyup)="updateFilterTemplates($event)"><label for="form1" class="">Search templaes</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="button" mdbBtn color="blue-grey" class="float-right mb-3" (click)="openTemplateModal()"
+                size="sm" mdbWavesEffect>Add Template</button>
+        </div>
+        <div class="col-12">
+            <ngx-datatable #myTemplatesTable class="material" [rows]="rows" [columns]="columns" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+            </ngx-datatable>
+            <ngx-datatable-column name="Edit" sortable="false" prop="templateEdit">
+                <ng-template #templateEditButton let-row="row" let-value="value" let-i="index">
+                    <button type="button" mdbBtn color="blue-grey" (click)="openTemplateModal(row)" size="sm"
+                        mdbWavesEffect>
+                        <mdb-icon far icon="edit"></mdb-icon>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+        </div>
+    </div>
+</div>
