@@ -31,6 +31,18 @@ export class AdminTemplatesService {
       );
   }
 
+  getGroupedTemplates(): Observable<any> {
+    return this.http.get(
+      this.apiPath + '/templates/grouped', httpOptions).pipe(
+        map((result: any) => {
+          return result;
+        }),
+        catchError((error) => {
+          return throwError(error.error);
+        })
+      );
+  }
+
   addTemplate(params): Observable<any> {
     return this.http.post(this.apiPath + '/templates/add', params, httpOptions).pipe(
       map((result: any) => {
