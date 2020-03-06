@@ -249,6 +249,7 @@
                         </label>
                         <div class="md-form">
                             <textarea type="text" rows="4" name="casinoMetaDescription" id="form7" class="md-textarea form-control" [(ngModel)]="casino.casinoMetaDescription" mdbInput></textarea>
+                            <small class="char-counter">{{casino.casinoMetaDescription | charCount}}</small>
                           </div>
                     </div>
                     
