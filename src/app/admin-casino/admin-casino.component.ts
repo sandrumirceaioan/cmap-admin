@@ -111,9 +111,11 @@ export class AdminCasinoComponent implements OnInit {
   }
 
   updateCasino(draft) {
-    if (draft) this.casino['casinoDraft'] = true;
+    if (draft) {
+      this.casino['casinoDraft'] = true;
+      this.casino['casinoPublished'] = false;
+    }
     if (!draft) this.casino['casinoPublished'] = true;
-    console.log(this.casino);
     this.adminCasinosService.updateCasino(this.casino._id, this.casino).subscribe(
       (result) => {
         this.casino = result.data;

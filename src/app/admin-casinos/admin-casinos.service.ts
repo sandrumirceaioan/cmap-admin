@@ -23,7 +23,10 @@ export class AdminCasinosService {
     count: 0,
     orderBy: null,
     orderDir: null,
-    search: null
+    search: null,
+    filter: {
+      published: null
+    }
   };
 
   constructor(
@@ -35,6 +38,10 @@ export class AdminCasinosService {
     let skip = this.page.skip * this.page.offset;
     if (this.page.search) {
       params = params.append('search', this.page.search);
+      skip = 0;
+    }
+    if (this.page.filter.published) {
+      params = params.append('published', this.page.filter.published);
       skip = 0;
     }
     params = params.append('skip', skip.toString());

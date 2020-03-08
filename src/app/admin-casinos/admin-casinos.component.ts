@@ -38,12 +38,12 @@ export class AdminCasinosComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'casinoLogo', name:'Logo', cellTemplate: this.rowImage, sortable: false, width: 50 },
-      { prop: 'casinoName', name:'Casino', sortable: true },
-      { prop: 'casinoWebsiteUrl', name:'Website', sortable: true },
-      { prop: 'casinoCreated', name:'Created', sortable: true, pipe: this.datePipe },
-      { prop: 'casinoReputation', name:'Reputation', sortable: true },
-      { prop: 'casinoPublished', name:'Published', sortable: true },
+      { prop: 'casinoLogo', name: 'Logo', cellTemplate: this.rowImage, sortable: false, width: 50 },
+      { prop: 'casinoName', name: 'Casino', sortable: true },
+      { prop: 'casinoWebsiteUrl', name: 'Website', sortable: true },
+      { prop: 'casinoCreated', name: 'Created', sortable: true, pipe: this.datePipe },
+      { prop: 'casinoReputation', name: 'Reputation', sortable: true },
+      { prop: 'casinoPublished', name: 'Published', sortable: true },
       { prop: 'edit', name: 'Edit', cellTemplate: this.editButton, sortable: false, width: 100 },
       { prop: 'details', name: 'Details', cellTemplate: this.detailsButton, sortable: false, width: 50 }
     ];
@@ -63,12 +63,22 @@ export class AdminCasinosComponent implements OnInit {
       });
   }
 
+  filterTable(status) {
+    if (status === 'all') {
+      this.adminCasinosService.page.filter.published = null;
+      this.reloadTable();
+    } else {
+      this.adminCasinosService.page.filter.published = status;
+      this.reloadTable();
+    }
+  }
+
   pageCallback(pageInfo: { count?: number, pageSize?: number, limit?: number, offset?: number }) {
     this.adminCasinosService.page.offset = pageInfo.offset;
     this.reloadTable();
   }
 
-  sortCallback(sortInfo:{ sorts:{dir: string, prop: string }[], column: {}, prevValue: string, newValue: string}) {
+  sortCallback(sortInfo: { sorts: { dir: string, prop: string }[], column: {}, prevValue: string, newValue: string }) {
     this.adminCasinosService.page.orderDir = sortInfo.sorts[0].dir;
     this.adminCasinosService.page.orderBy = sortInfo.sorts[0].prop;
     this.reloadTable();

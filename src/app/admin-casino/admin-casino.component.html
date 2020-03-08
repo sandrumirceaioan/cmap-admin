@@ -537,8 +537,10 @@
                         <button type="button" (click)="updateCasino(false)" type="button" mdbBtn color="blue-grey"
                             mdbWavesEffect [disabled]="!f.valid">Publish
                         </button>
-                        <button *ngIf="!casino.casinoPublished" type="button" (click)="updateCasino(true)" type="button"
-                            mdbBtn color="amber" mdbWavesEffect [disabled]="!f.valid">Save Draft
+                        <button type="button" (click)="updateCasino(true)" type="button"
+                            mdbBtn color="amber" mdbWavesEffect [disabled]="!f.valid">
+                            <span *ngIf="!casino.casinoPublished">Save Draft</span>
+                            <span *ngIf="casino.casinoPublished">Hide</span>
                         </button>
                     </div>
                 </div>
