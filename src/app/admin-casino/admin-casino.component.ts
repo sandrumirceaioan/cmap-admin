@@ -41,12 +41,29 @@ export class AdminCasinoComponent implements OnInit {
 
   usedPlaceholders = [
     "casinoName",
+    "casinoUrl",
+    "casinoPlayUrl",
+    "casinoWebsiteUrl",
+    "casinoScore",
     "casinoReputation",
-    "casinoType",
+    "casinoLanguages",
+    "casinoLiveChat",
+    "casinoContact",
     "casinoOwner",
     "casinoEstablished",
+    "casinoWithdrawalLimit",
     "casinoLicensingAuthorities",
-    "casinoSoftwareProviders"
+    "casinoBonusesUrl",
+    "casinoRestrictedCountries",
+    "casinoType",
+    "casinoAffiliateProgram",
+    "casinoRtp",
+    "casinoCurrencies",
+    "casinoSoftwareProviders",
+    "casinoDepositMethods",
+    "casinoWithdrawalMethods",
+    "casinoWithdrawalTimes",
+    "casinoStatus"
   ];
 
   description: any = {
@@ -79,7 +96,6 @@ export class AdminCasinoComponent implements OnInit {
   setDescription(index, section) {
     if (index == null) return false;
     this.description[section] = this.descriptionList[section][index].template;
-    this.previewSelected = this.descriptionList[section][index].template;
   }
 
   generateDescription() {
@@ -92,6 +108,12 @@ export class AdminCasinoComponent implements OnInit {
       let replaceValue = '';
       if (this.usedPlaceholders[i] === 'casinoSoftwareProviders') {
         replaceValue = _.pluck(_.first(this.casino.casinoSoftwareProviders, 10), 'name').join(', ');
+      } else if (this.usedPlaceholders[i] === 'casinoRestrictedCountries') {
+        replaceValue = _.pluck(_.first(this.casino.casinoRestrictedCountries, 10), 'name').join(', ');
+      } else if (this.usedPlaceholders[i] === 'casinoDepositMethods') {
+        replaceValue = _.pluck(_.first(this.casino.casinoDepositMethods, 10), 'name').join(', ');
+      } else if (this.usedPlaceholders[i] === 'casinoWithdrawalMethods') {
+        replaceValue = _.pluck(_.first(this.casino.casinoWithdrawalMethods, 10), 'name').join(', ');
       } else {
         replaceValue = this.casino[this.usedPlaceholders[i]];
       }
@@ -102,7 +124,7 @@ export class AdminCasinoComponent implements OnInit {
       mergedDescription = mergedDescription.replace(re, '<b>' + replaceValue + '</b>');
     }
 
-    this.casino.casinoFullDescription = mergedDescription;
+    this.previewSelected = mergedDescription;
   }
 
   setReputation(score) {

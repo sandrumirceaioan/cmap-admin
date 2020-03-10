@@ -58,7 +58,7 @@ export class AdminTemplatesComponent implements OnInit {
       title: row ? 'Edit ' + row.templateName : 'Add template',
       button: row ? 'update' : 'add'
     };
-    this.bsModalRef = this.modalService.show(TemplateModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(TemplateModalComponent, { initialState, backdrop: 'static', keyboard: false });
     this.bsModalRef.content.event.subscribe(data => {
       if (row) {
         row.templateName = data.templateName;
