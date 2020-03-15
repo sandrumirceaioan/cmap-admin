@@ -9,21 +9,12 @@
                     <div class="col-lg-2 col-12 logo">
                         <img src="{{adminCasinosService.backendPath+casino.casinoLogo}}" alt="{{casino.casinoLogo}}">
                     </div>
-                    <div class="col-lg-2 col-12">
+                    <div class="col-lg-3 col-12">
                         <div class="md-form">
                             <input mdbInput type="text" id="casinoName" name="casinoName" class="form-control"
-                                [(ngModel)]="casino.casinoName" #casinoName="ngModel"
-                                (keyup)="updateUrl()">
+                                [(ngModel)]="casino.casinoName" #casinoName="ngModel" (keyup)="updateUrl()">
                             <label for="casinoName">Name</label>
                             <small class="char-counter">{{casino.casinoName.length}}</small>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-12">
-                        <div class="md-form">
-                            <input mdbInput type="text" id="casinoWebsiteUrl" name="casinoWebsiteUrl"
-                                class="form-control" [(ngModel)]="casino.casinoWebsiteUrl" #casinoWebsiteUrl="ngModel">
-                            <label for="casinoWebsiteUrl">Website</label>
-                            <small class="char-counter">{{casino.casinoWebsiteUrl.length}}</small>
                         </div>
                     </div>
                     <div class="col-lg-3 col-12">
@@ -38,7 +29,7 @@
                             </small>
                         </div>
                     </div>
-                    <div class="col-md-1 col-12">
+                    <div class="col-md-2 col-12">
                         <div class="md-form">
                             <input mdbInput type="text" id="casinoEstablished" name="casinoEstablished"
                                 class="form-control" [(ngModel)]="casino.casinoEstablished"
@@ -66,6 +57,14 @@
                     </div>
                     <div class="col-lg-3 col-12">
                         <div class="md-form">
+                            <input mdbInput type="text" id="casinoWebsiteUrl" name="casinoWebsiteUrl"
+                                class="form-control" [(ngModel)]="casino.casinoWebsiteUrl" #casinoWebsiteUrl="ngModel">
+                            <label for="casinoWebsiteUrl">Website</label>
+                            <small class="char-counter">{{casino.casinoWebsiteUrl.length}}</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <div class="md-form">
                             <input mdbInput type="text" id="casinoEmail" name="casinoEmail" class="form-control"
                                 [(ngModel)]="casino.casinoContact.email" #casinoEmail="ngModel">
                             <label for="casinoEmail">Email</label>
@@ -83,15 +82,6 @@
                             <input mdbInput type="text" id="casinoLiveChat" name="casinoLiveChat" class="form-control"
                                 [(ngModel)]="casino.casinoLiveChat" #casinoLiveChat="ngModel">
                             <label for="casinoLiveChat">Live Chat</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-12">
-                        <div class="md-form">
-                            <input mdbInput type="text" id="casinoAffiliateProgram" name="casinoAffiliateProgram"
-                                class="form-control" [(ngModel)]="casino.casinoAffiliateProgram.url"
-                                #casinoAffiliateProgram="ngModel">
-                            <label for="casinoLiveChat">Affiliate -
-                                <strong>{{casino.casinoAffiliateProgram.name}}</strong></label>
                         </div>
                     </div>
 
@@ -245,14 +235,18 @@
                     </div>
                     <div class="col-md-5 short-description">
                         <label for="haveMetaDescription" class="textarea-label">
-                            <input type="checkbox" name="haveMetaDescription" id="haveMetaDescription" [(ngModel)]="haveMetaDescription" (change)="generateMetaDescription(casino.casinoDescription)"> Generate Meta Description
+                            <input type="checkbox" name="haveMetaDescription" id="haveMetaDescription"
+                                [(ngModel)]="haveMetaDescription"
+                                (change)="generateMetaDescription(casino.casinoDescription)"> Generate Meta Description
                         </label>
                         <div class="md-form">
-                            <textarea type="text" rows="4" name="casinoMetaDescription" id="form7" class="md-textarea form-control" [(ngModel)]="casino.casinoMetaDescription" mdbInput></textarea>
-                            <small class="char-counter">{{casino.casinoMetaDescription | charCount}}</small>
-                          </div>
+                            <textarea type="text" rows="4" name="casinoMetaDescription" id="form7"
+                                class="md-textarea form-control" [(ngModel)]="casino.casinoMetaDescription"
+                                mdbInput></textarea>
+                            <small *ngIf="casino.casinoMetaDescription" class="char-counter">{{casino.casinoMetaDescription | charCount}}</small>
+                        </div>
                     </div>
-                    
+
                     <div class="col-md-7">
                         <label for="casinoFullDescription" class="textarea-label">Casino Full Description</label>
                         <div class="form-row inner">
@@ -277,22 +271,23 @@
                                 </select>
                             </div>
                             <div class="col-md-2 mt-4">
-                                <select name="descriptionPayment" class="browser-default custom-select"
-                                    [(ngModel)]="selectedPaymentDescription"
-                                    (change)="setDescription(selectedPaymentDescription, 'payment')">
-                                    <option [ngValue]="null" selected>Payment</option>
-                                    <option *ngFor="let payment of descriptionList.payment" [ngValue]="payment.index">
-                                        {{payment.name}}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 mt-4">
                                 <select name="descriptionPlatform" class="browser-default custom-select"
                                     [(ngModel)]="selectedPlatformDescription"
                                     (change)="setDescription(selectedPlatformDescription, 'platform')">
                                     <option [ngValue]="null" selected>Platform</option>
-                                    <option *ngFor="let platform of descriptionList.platform" [ngValue]="platform.index">
+                                    <option *ngFor="let platform of descriptionList.platform"
+                                        [ngValue]="platform.index">
                                         {{platform.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <select name="descriptionSupport" class="browser-default custom-select"
+                                    [(ngModel)]="selectedSupportDescription"
+                                    (change)="setDescription(selectedSupportDescription, 'support')">
+                                    <option [ngValue]="null" selected>Support</option>
+                                    <option *ngFor="let support of descriptionList.support" [ngValue]="support.index">
+                                        {{support.name}}
                                     </option>
                                 </select>
                             </div>
@@ -301,7 +296,8 @@
                                     [(ngModel)]="selectedSecurityDescription"
                                     (change)="setDescription(selectedSecurityDescription, 'security')">
                                     <option [ngValue]="null" selected>Security</option>
-                                    <option *ngFor="let security of descriptionList.security" [ngValue]="security.index">
+                                    <option *ngFor="let security of descriptionList.security"
+                                        [ngValue]="security.index">
                                         {{security.name}}
                                     </option>
                                 </select>
@@ -533,14 +529,44 @@
                     </div>
                 </div>
 
+                <!-- Affiliate -->
+                <div class="form-row">
+                    <div class="form-row-title">Affiliates</div>
+                    <div class="col-md-6 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoAffiliateProgram" name="casinoAffiliateProgram"
+                                class="form-control" [(ngModel)]="casino.casinoAffiliateProgram.url"
+                                #casinoAffiliateProgram="ngModel">
+                            <label for="casinoLiveChat">
+                                <strong>{{casino.casinoAffiliateProgram.name}}</strong></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoAffiliateUsername" name="casinoAffiliateUsername"
+                                class="form-control" [(ngModel)]="casino.casinoAffiliateUsername"
+                                #casinoAffiliateUsername="ngModel">
+                            <label for="casinoAffiliateUsername">Username</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoAffiliatePassword" name="casinoAffiliatePassword"
+                                class="form-control" [(ngModel)]="casino.casinoAffiliatePassword"
+                                #casinoAffiliatePassword="ngModel">
+                            <label for="casinoAffiliatePassword">Password</label>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="form-row">
                     <div class="col">
                         <button type="button" (click)="updateCasino(false)" type="button" mdbBtn color="blue-grey"
                             mdbWavesEffect [disabled]="!f.valid">Publish
                         </button>
-                        <button type="button" (click)="updateCasino(true)" type="button"
-                            mdbBtn color="amber" mdbWavesEffect [disabled]="!f.valid">
+                        <button type="button" (click)="updateCasino(true)" type="button" mdbBtn color="amber"
+                            mdbWavesEffect [disabled]="!f.valid">
                             <span *ngIf="!casino.casinoPublished">Save Draft</span>
                             <span *ngIf="casino.casinoPublished">Hide</span>
                         </button>

@@ -33,8 +33,8 @@ export class AdminCasinoComponent implements OnInit {
 
   selectedIntroDescription = null;
   selectedGamesDescription = null;
-  selectedPaymentDescription = null;
   selectedPlatformDescription = null;
+  selectedSupportDescription = null;
   selectedSecurityDescription = null;
   selectedFeedbackDescription = null;
   previewSelected: any;
@@ -69,8 +69,8 @@ export class AdminCasinoComponent implements OnInit {
   description: any = {
     intro: '',
     games: '',
-    payment: '',
     platform: '',
+    support: '',
     security: ''
   };
 

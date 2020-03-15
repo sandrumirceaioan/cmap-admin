@@ -1,1 +1,57 @@
-<p>admin-bonuses works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <div class="md-form">
+                    <input mdbInput #searchInput type="text" id="form1" class="form-control">
+                    <label for="form1" class="">Search bonuses</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <ngx-datatable 
+                #myTable 
+                class="material" 
+                [rows]="rows" 
+                [columns]="columns" 
+                [columnMode]="'force'"  
+                [headerHeight]="50"
+                [footerHeight]="50" 
+                [rowHeight]="'auto'" 
+                [loadingIndicator]="loading" 
+                [externalSorting]="true"
+                [externalPaging]="true" 
+                [count]="adminBonusesService.page.count"
+                [offset]="adminBonusesService.page.offset" 
+                [limit]="adminBonusesService.page.limit"
+                (page)="pageCallback($event)" 
+                (sort)="sortCallback($event)"
+            ></ngx-datatable>
+            
+            <ngx-datatable-column name="Edit" sortable="false" prop="edit">
+                <ng-template #editButton let-row="row" let-value="value" let-i="index">
+                    <button type="button" mdbBtn color="blue-grey" (click)="editBonus(row)" size="sm" mdbWavesEffect>
+                        <mdb-icon far icon="edit"></mdb-icon>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Delete" sortable="false" prop="delete">
+                <ng-template #deleteButton let-row="row" let-value="value" let-i="index">
+                    <button *ngIf="!deleteConfirm[row._id]" type="button" mdbBtn color="blue-grey" (click)="deleteBonus(row, 'ask')" size="sm" mdbWavesEffect>
+                        <mdb-icon far icon="trash-alt"></mdb-icon>
+                    </button>
+
+                    <button *ngIf="deleteConfirm[row._id]" type="button" mdbBtn color="danger" (click)="deleteBonus(row, false)" size="sm" mdbWavesEffect>
+                        <mdb-icon fas icon="times"></mdb-icon>
+                    </button>
+                    <button *ngIf="deleteConfirm[row._id]" type="button" mdbBtn color="success" (click)="deleteBonus(row, true)" size="sm" mdbWavesEffect>
+                        <mdb-icon fas icon="check"></mdb-icon>
+                    </button>
+                </ng-template>
+        </ngx-datatable-column>
+        </div>
+    </div>
+
+</div>

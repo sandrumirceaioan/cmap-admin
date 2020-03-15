@@ -17,6 +17,7 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import { AdminSettingsResolve } from './admin-settings/admin-settings.resolve';
 import { AdminTemplatesComponent } from './admin-templates/admin-templates.component';
 import { AdminTemplatesResolve } from './admin-templates/admin-templates.resolve';
+import { AdminBonusesResolve } from './admin-bonuses/admin-bonuses.resolve';
 
 const routes: Routes = [
   {
@@ -53,10 +54,10 @@ const routes: Routes = [
       {
         path: 'bonuses',
         component: AdminBonusesComponent,
-        data: { breadcrumb: 'Bonuses' }
-        // resolve: {
-        //   dashboard: DashboardResolve
-        // }
+        data: { breadcrumb: 'Bonuses' },
+        resolve: {
+          bonuses: AdminBonusesResolve
+        }
       },
       {
         path: 'slots',

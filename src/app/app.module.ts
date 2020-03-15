@@ -46,6 +46,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminTemplatesComponent } from './admin-templates/admin-templates.component';
 import { AdminTemplatesResolve } from './admin-templates/admin-templates.resolve';
 import { TemplateModalComponent } from './shared/modals/template-modal/template-modal.component';
+import { AdminBonusesResolve } from './admin-bonuses/admin-bonuses.resolve';
 
 TagInputModule.withDefaults({
 
@@ -111,6 +112,7 @@ TagInputModule.withDefaults({
     AuthGuard,
     AdminDashboardResolve,
     AdminCasinosResolve,
+    AdminBonusesResolve,
     AdminCasinoResolve,
     AdminSettingsResolve,
     AdminTemplatesResolve
