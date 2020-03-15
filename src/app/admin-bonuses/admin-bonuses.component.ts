@@ -109,7 +109,8 @@ export class AdminBonusesComponent implements OnInit {
     }
   }
 
-  editCasino(row) {
-    this.router.navigate(['/bonuses', row._id]);
+  editBonus(row) {
+    console.log(row);
+    //this.router.navigate(['/bonuses', row._id]);
   }
 }
