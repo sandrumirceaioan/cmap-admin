@@ -243,7 +243,8 @@
                             <textarea type="text" rows="4" name="casinoMetaDescription" id="form7"
                                 class="md-textarea form-control" [(ngModel)]="casino.casinoMetaDescription"
                                 mdbInput></textarea>
-                            <small *ngIf="casino.casinoMetaDescription" class="char-counter">{{casino.casinoMetaDescription | charCount}}</small>
+                            <small *ngIf="casino.casinoMetaDescription"
+                                class="char-counter">{{casino.casinoMetaDescription | charCount}}</small>
                         </div>
                     </div>
 
@@ -555,6 +556,19 @@
                                 class="form-control" [(ngModel)]="casino.casinoAffiliatePassword"
                                 #casinoAffiliatePassword="ngModel">
                             <label for="casinoAffiliatePassword">Password</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-row">
+                    <div class="form-row-title">Terms</div>
+                    <div class="col-md-4 col-12">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="casinoTermsUrl" name="casinoTermsUrl"
+                                class="form-control" [(ngModel)]="casino.casinoTermsUrl"
+                                #casinoTermsUrl="ngModel">
+                            <label for="casinoTermsUrl">Terms URL</label>
                         </div>
                     </div>
                 </div>
