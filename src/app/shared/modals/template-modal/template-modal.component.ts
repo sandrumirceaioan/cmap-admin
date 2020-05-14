@@ -5,6 +5,11 @@ import { Subscription, Subject } from 'rxjs';
 import { AdminTemplatesService } from '../../../admin-templates/admin-templates.service';
 import { ToastrService } from 'ngx-toastr';
 
+interface TemplateType {
+  name: string,
+  value: string
+}
+
 @Component({
   selector: 'app-template-modal',
   templateUrl: './template-modal.component.html',
@@ -18,6 +23,40 @@ export class TemplateModalComponent implements OnInit {
   closeBtnName: string;
   data: any;
   tamplateForm: any;
+  placeholders: string[] = [
+    "casinoName",
+    "casinoUrl",
+    "casinoPlayUrl",
+    "casinoWebsiteUrl",
+    "casinoScore",
+    "casinoReputation",
+    "casinoLanguages",
+    "casinoLiveChat",
+    "casinoContact",
+    "casinoOwner",
+    "casinoEstablished",
+    "casinoWithdrawalLimit",
+    "casinoLicensingAuthorities",
+    "casinoBonusesUrl",
+    "casinoRestrictedCountries",
+    "casinoType",
+    "casinoAffiliateProgram",
+    "casinoRtp",
+    "casinoCurrencies",
+    "casinoSoftwareProviders",
+    "casinoDepositMethods",
+    "casinoWithdrawalMethods",
+    "casinoWithdrawalTimes",
+    "casinoStatus"
+  ];
+
+  types: TemplateType[] = [
+    { name: 'Intro', value: 'intro' },
+    { name: 'Games', value: 'games' },
+    { name: 'Platform', value: 'platform' },
+    { name: 'Support', value: 'support' },
+    { name: 'Security', value: 'security' }
+  ];
 
   constructor(
     private toastr: ToastrService,
@@ -28,7 +67,7 @@ export class TemplateModalComponent implements OnInit {
 
   ngOnInit() {
     this.tamplateForm = this.fb.group({
-      templateType: [(this.data) ? this.data.templateType : null, Validators.required],
+      templateType: [(this.data) ? this.data.templateType : "", Validators.required],
       templateName: [(this.data) ? this.data.templateName : null, Validators.required],
       templateContent: [(this.data) ? this.data.templateContent : null, Validators.required]
     });
@@ -66,6 +105,12 @@ export class TemplateModalComponent implements OnInit {
     } else {
       this.toastr.error('All fields required!');
     }
+  }
+
+  pushPlaceholder(placeholder) {
+    let content = this.tamplateForm.controls.templateContent.value;
+    if (!content) content = '';
+    this.tamplateForm.get('templateContent').setValue(content + placeholder);
   }
 
 }

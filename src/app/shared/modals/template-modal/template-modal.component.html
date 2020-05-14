@@ -1,28 +1,43 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="tamplateForm">
-      <div class="md-form mb-2">
-        <input type="text" id="templateType" formControlName="templateType" class="form-control" mdbInput>
-        <label for="templateType">Template Type</label>
-      </div>
-  
-      <div class="md-form mb-3">
-        <input type="text" id="templateName" formControlName="templateName" class="form-control" mdbInput>
-        <label for="templateName">Template Name</label>
-      </div>
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-8">
+      <form [formGroup]="tamplateForm">
+        <div class="md-form mb-2">
+          <select name="templateType" id="templateType" formControlName="templateType" class="form-control custom-dropdown my-4">
+            <option class="placeholder" value="" selected>Template Type</option>
+            <option *ngFor="let type of types" [value]="type.value">{{type.name}}</option>
+          </select>
+        </div>
 
-      <div class="md-form mb-3">
-        <textarea type="text" id="templateContent" formControlName="templateContent" class="md-textarea form-control" mdbInput></textarea>
-        <label for="templateContent">Basic textarea</label>
-      </div>
-    </form>
+        <div class="md-form mb-3">
+          <input type="text" id="templateName" formControlName="templateName" class="form-control" mdbInput>
+          <label for="templateName">Template Name</label>
+        </div>
+
+        <div class="md-form mb-3">
+          <textarea type="text" id="templateContent" formControlName="templateContent" class="md-textarea form-control"
+            mdbInput></textarea>
+          <label for="templateContent">Template Content</label>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 side-modal">
+      <p>Placeholders to use:</p>
+      <ul>
+        <li *ngFor="let placeholder of placeholders" (click)="pushPlaceholder(placeholder)">
+          {{placeholder}}
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button mdbBtn type="button" color="blue-grey" (click)="confirm()" mdbWavesEffect>{{ button | titlecase}}</button>
-    <button mdbBtn type="button" color="grey" (click)="bsModalRef.hide()" mdbWavesEffect>Close</button>
-  </div>
+</div>
+<div class="modal-footer">
+  <button mdbBtn type="button" color="blue-grey" (click)="confirm()" mdbWavesEffect>{{ button | titlecase}}</button>
+  <button mdbBtn type="button" color="grey" (click)="bsModalRef.hide()" mdbWavesEffect>Close</button>
+</div>

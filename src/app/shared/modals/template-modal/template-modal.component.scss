@@ -1,3 +1,40 @@
 .inner {
     box-shadow: none !important;
 }
+
+.side-modal {
+    border-left: 1px solid #bebebe;
+}
+
+.side-modal ul {
+    list-style-type:none;
+    margin: 0px; 
+    padding: 0px;
+}
+
+.side-modal ul li {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.side-modal ul li:hover {
+    color: #000000;
+    background: #e4e4e4;
+}
+
+.custom-dropdown {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.custom-dropdown .placeholder {
+    color: #7d7d7d;
+}
+
+.custom-dropdown:focus {
+    transition: all ease-in 0.2s;
+    border-bottom: 2px solid #78909C;
+}
