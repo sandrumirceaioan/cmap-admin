@@ -28,7 +28,8 @@ export class AdminDashboardResolve implements Resolve<any> {
             this.adminCasinosService.countCasinos(),
             this.adminBonusesService.countBonuses(),
             this.adminSlotsService.countSlots(),
-            this.adminAffiliatesService.countAffiliates()
+            this.adminAffiliatesService.countAffiliates(),
+            this.adminCasinosService.countByReputation()
         ]).pipe(
                 map((result) => {
                     return {
@@ -36,6 +37,7 @@ export class AdminDashboardResolve implements Resolve<any> {
                         bonuses: result[1],
                         slots: result[2],
                         affiliates: result[3],
+                        reputation: result[4]
                     };
                 }),
                 catchError((error) => {

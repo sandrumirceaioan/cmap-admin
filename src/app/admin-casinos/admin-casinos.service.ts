@@ -87,6 +87,17 @@ export class AdminCasinosService {
     );
   }
 
+  countByReputation(): Observable<any> {
+    return this.http.get(this.apiPath + '/casinos/countByReputation', httpOptions).pipe(
+      map((result: any) => {
+        return result;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error.error)
+      })
+    );
+  }
+
   getReputation(score) {
     let reputation: string;
     switch (true) {

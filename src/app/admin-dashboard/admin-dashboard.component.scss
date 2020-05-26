@@ -4,7 +4,7 @@
 }
 
 .counter span {
-    font-size:35px;
+    font-size: 35px;
     white-space: nowrap;
 }
 
@@ -16,4 +16,23 @@
 .published span {
     color: #ffbb00;
     font-weight: bold;
+}
+
+.list {
+    border-top: 1px solid #ececec;
+    padding: 10px 0;
+
+    & .reputation {
+        color: #3b3b3b;
+        font-weight: bold;
+    }
+
+    & .count span {
+        color: #ffbb00;
+        font-weight: bold;
+    }
+
+    &:hover {
+        background: #f6f6f6;
+    }
 }
